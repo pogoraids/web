@@ -2,3 +2,25 @@
 .app-title {
     display: inline-block;
 }
+.app-menu {
+    width: 300px;
+    z-index: 1030;
+    position: relative;
+    top: 58px;
+    padding: 1.25rem;
+    border: 1px solid black;
+    border-top: none;
+    border-left: none;
+    background-color: white;
+}
+.app-overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    height: 100vh;
+    background-color: rgba(0,0,0,.25);
+    z-index: 900;
+}

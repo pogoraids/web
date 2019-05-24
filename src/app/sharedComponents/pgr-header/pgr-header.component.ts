@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OverlayService } from 'src/app/services/overlay.service';
 
 @Component({
   selector: 'app-pgr-header',
@@ -6,13 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pgr-header.component.scss']
 })
 export class PgrHeaderComponent implements OnInit {
+  menuIsShowing: boolean;
 
-  constructor() { }
+  constructor(private overlayService: OverlayService) { }
 
   ngOnInit() {
+    this.overlayService.onOverlayChanged.subscribe((status) => {
+      this.menuIsShowing = status;
+    });
   }
   
-  toggleMenu() {}
+  toggleMenu() {
+    this.overlayService.toggle();
+    this.overlayService.onOverlayChanged.next(!this.menuIsShowing);
+  }
+
+  clickedOverlay() {
+
+  }
 
   goToLogin() {}
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OverlayService } from 'src/app/services/overlay.service';
 
 @Component({
   selector: 'app-pgr-overlay',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PgrOverlayComponent implements OnInit {
 
-  constructor() { }
+  constructor(private overlayService: OverlayService) { }
 
   ngOnInit() {
+  }
+  
+  isOverlayShown() {
+    return this.overlayService.isVisible();
+  }
+
+  toggleOverlaid() {
+    this.overlayService.toggle();
+    this.overlayService.onOverlayChanged.next(false);
   }
 
 }

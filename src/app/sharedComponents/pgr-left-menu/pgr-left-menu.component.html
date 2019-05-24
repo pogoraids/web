@@ -1,3 +1,24 @@
-<p>
-  pgr-left-menu works!
-</p>
+<nav class="navbar-collapse app-menu" [hidden]="!showing">
+  <ul class="navbar-nav">
+    <li *ngFor="let firstLevel of menuOptions; index as i" [hidden]="firstLevel.hidden">
+      <div class="navbar-item actionable" (click)="firstLevel.collapsed = !firstLevel.collapsed">
+        <span class="{{ firstLevel.icon }}"></span>
+        <span>{{ firstLevel.label }}</span>
+      </div>
+      <ul class="navbar-nav subsection collapse" [class.show]="!firstLevel.collapsed" *ngIf="firstLevel.children">
+        <li *ngFor="let secondLevel of firstLevel.children; index as j">
+          <div class="navbar-item actionable" (click)="secondLevel.collapsed = !secondLevel.collapsed">
+            <span class="{{ secondLevel.icon }}"></span>
+            <span>{{ secondLevel.label }}</span>
+          </div>
+          <ul class="navbar-nav subsection collapse" [class.show]="!secondLevel.collapsed" *ngIf="secondLevel.children">
+            <li *ngFor="let thirdLevel of secondLevel.children; index as k">
+              <span class="{{ thirdLevel.icon }}"></span>
+              <span>{{ thirdLevel.label }}</span>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>

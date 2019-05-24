@@ -1,4 +1,4 @@
-<header class="navbar fixed-top">
+<header class="navbar fixed-top header">
   <span class="oi oi-menu navbar-toggler" title="Menu" aria-hidden="true" (click)="toggleMenu()"></span>
   <h3 class="app-title">PoGoRaids</h3>
   <div class="user-status">
@@ -7,3 +7,5 @@
     <span class="oi oi-account-login" (click)="goToLogin()"></span>
   </div>
 </header>
+
+<app-pgr-left-menu [showing]="menuIsShowing"></app-pgr-left-menu>
