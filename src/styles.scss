@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "_include.scss";
+
 .app-title {
     display: inline-block;
 }
@@ -8,10 +10,10 @@
     position: relative;
     top: 58px;
     padding: 1.25rem;
-    border: 1px solid black;
+    border: 1px solid $haunter-thumb;
     border-top: none;
     border-left: none;
-    background-color: white;
+    background-color: $haunter;
 }
 .app-overlay {
     top: 0;
@@ -21,6 +23,6 @@
     width: 100%;
     position: absolute;
     height: 100vh;
-    background-color: rgba(0,0,0,.25);
+    background-color: $mismagius;
     z-index: 900;
 }

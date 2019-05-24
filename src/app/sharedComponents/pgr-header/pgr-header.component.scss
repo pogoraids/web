@@ -1,3 +1,5 @@
+@import "../../../include.scss";
+
 .user-status {
     display: inline-block;
 
@@ -7,6 +9,6 @@
     }
 }
 .header {
-    background-color: white;
-    border-bottom: 1px solid black;
+    background-color: $banette;
+    border-bottom: 1px solid $banette-zipper;
 }
