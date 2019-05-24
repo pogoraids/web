@@ -1,4 +1,9 @@
-<!-- <span class="oi oi-menu" title="icon name" aria-hidden="true"></span> -->
-<p>
-  pgr-header works!
-</p>
+<header class="navbar fixed-top">
+  <span class="oi oi-menu navbar-toggler" title="Menu" aria-hidden="true" (click)="toggleMenu()"></span>
+  <h3 class="app-title">PoGoRaids</h3>
+  <div class="user-status">
+    <span class="user-action">Login</span>
+    <span class="user-name" [hidden]="true">yourcalcprof</span>
+    <span class="oi oi-account-login" (click)="goToLogin()"></span>
+  </div>
+</header>
