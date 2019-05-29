@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedComponentsModule } from './sharedComponents/sharedComponents.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app.routing';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    RouterModule.forRoot([], {useHash: false}),
-    SharedComponentsModule
+    AppRoutingModule,
+    SharedComponentsModule,
+    UsersModule
   ],
   providers: [],
   bootstrap: [AppComponent]
