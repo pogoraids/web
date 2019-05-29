@@ -26,3 +26,7 @@
     background-color: $mismagius;
     z-index: 900;
 }
+.main-content {
+    padding-top: 58px;
+    padding-bottom: calc(100% + 58px);
+}
