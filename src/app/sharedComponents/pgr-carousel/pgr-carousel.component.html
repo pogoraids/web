@@ -1,3 +1,9 @@
-<p>
-  pgr-carousel works!
-</p>
+<ngb-carousel>
+  <ng-template *ngFor="let slide of slides" ngbSlide>
+    <img src="{{slide?.image}}" />
+    <div class="carousel-caption">
+      <h3>{{ slide?.title }}</h3>
+      <p>{{ slide?.body }}</p>
+    </div>
+  </ng-template>
+</ngb-carousel>

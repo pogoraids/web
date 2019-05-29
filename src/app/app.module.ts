@@ -17,7 +17,6 @@ import { UsersModule } from './users/users.module';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
     AppRoutingModule,
     SharedComponentsModule,
     UsersModule

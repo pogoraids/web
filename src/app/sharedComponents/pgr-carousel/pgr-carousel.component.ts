@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-pgr-carousel',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pgr-carousel.component.css']
 })
 export class PgrCarouselComponent implements OnInit {
+  @Input() slides;
 
   constructor() { }
 
