@@ -5,13 +5,14 @@ import { PgrLeftMenuComponent } from './pgr-left-menu/pgr-left-menu.component';
 import { PgrOverlayComponent } from './pgr-overlay/pgr-overlay.component';
 import { PgrTournamentCardComponent } from './pgr-tournament-card/pgr-tournament-card.component';
 import { PgrCarouselComponent } from './pgr-carousel/pgr-carousel.component';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [PgrHeaderComponent, PgrLeftMenuComponent, PgrOverlayComponent, PgrTournamentCardComponent, PgrCarouselComponent],
   imports: [
     CommonModule,
-    NgbCarouselModule
+    NgbCarouselModule,
+    NgbTabsetModule
   ],
   exports: [
     PgrHeaderComponent, 
@@ -19,7 +20,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     PgrOverlayComponent, 
     PgrTournamentCardComponent, 
     PgrCarouselComponent,
-    NgbCarouselModule
+    NgbCarouselModule,
+    NgbTabsetModule
   ]
 })
 export class SharedComponentsModule { }

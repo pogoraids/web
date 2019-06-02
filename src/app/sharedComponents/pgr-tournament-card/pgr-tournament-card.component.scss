@@ -1,0 +1,25 @@
+.tournament-card-container {
+    width: 100%;
+    padding: 1rem;
+    
+    &.tall-mode {
+        min-height: 450px;
+    }
+}
+.item-icon {
+    margin-right: 5px;
+}
+.add-record-icon {
+    margin-right: 5px;
+}
+.tournament-add-record {
+    position: absolute;
+    bottom: -10px;
+}
+@media (min-width: 780px) {
+    .tournament-card-container {
+        width: 50%;
+        float: left;
+        overflow-x: hidden;
+    }
+}

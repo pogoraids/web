@@ -1,3 +1,60 @@
-<p>
-  pgr-tournament-card works!
-</p>
+<div class="tournament-card-container" [ngClass]="{ 'tall-mode': data.tallMode }">
+  <ngb-tabset>
+    <ngb-tab>
+      <ng-template ngbTabTitle>{{data.name}}
+      </ng-template>
+      <ng-template ngbTabContent>
+        <ng-container *ngIf="!!data?.multiPod">
+          <ngb-tabset>
+            <ngb-tab *ngFor="let pod of data.pods; index as i">
+              <ng-template ngbTabTitle>{{pod.name}}</ng-template>
+              <ng-template ngbTabContent>
+                <table class="table table-striped">
+                  <thead *ngIf="data?.headers">
+                    <tr>
+                      <td *ngFor="let each of data.headers" [hidden]="each.hide">
+                        <span>{{ each.title }}</span>
+                      </td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let sub of pod.submissions | slice:0:data.limit; index as j">
+                      <td [hidden]="false">{{ sub.username }}</td>
+                      <td [hidden]="true">{{ sub.fast }}</td>
+                      <td [hidden]="true">{{ sub.cinematic }}</td>
+                      <td [hidden]="false">{{ sub.mark }}</td>
+                      <td [hidden]="false">{{ sub.link }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab *ngIf="data.pods.length > 1">
+              <ng-template ngbTabTitle>
+                  <div (click)="openTournament(data.id)">More...</div>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+        </ng-container>
+        <ng-container *ngIf="!data?.multiPod">
+          <div class="tournament-card-links">
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let item of data.items; index as i">
+                  <td><span class="oi item-icon"
+                      [ngClass]="{ 'oi-globe': item.tournamentMechanic === 'RAID', 'oi-loop': item.tournamentMechanic === 'PVP' }"></span>
+                    <span>{{ item.title }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </ng-container>
+        <div *ngIf="data?.showAdd" class="tournament-add-record" (click)="newSubmission(data.id)">
+          <span class="oi oi-plus add-record-icon"></span><span class="tournament-add-record-labeñ">Add new record...</span>
+        </div>
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+</div>

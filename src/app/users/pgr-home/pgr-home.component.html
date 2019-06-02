@@ -1,4 +1,10 @@
 <ng-container class="page">
   <app-pgr-carousel [slides]="slides"></app-pgr-carousel>
+
+  <ng-container *ngFor="let tournament of tournaments; index as i">
+    <app-pgr-tournament-card [data]="tournament">
+    </app-pgr-tournament-card>
+
+  </ng-container>
 </ng-container>
 
