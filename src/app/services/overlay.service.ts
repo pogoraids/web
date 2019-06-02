@@ -10,6 +10,12 @@ export class OverlayService {
 
   toggle() {
     OverlayService.isBeingShown = !OverlayService.isBeingShown;
+
+    if (document.body.classList.contains('overlay-shown')) {
+      document.body.classList.remove('overlay-shown');
+    } else {
+      document.body.classList.add('overlay-shown');
+    }
   }
 
   isVisible() {

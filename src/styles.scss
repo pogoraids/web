@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import "_include.scss";
 
+body.overlay-shown {
+    overflow-y: hidden;
+}
 .app-title {
     display: inline-block;
 }
@@ -21,12 +24,19 @@
     right: 0;
     bottom: 0;
     width: 100%;
-    position: absolute;
-    height: 100vh;
+    position: fixed;
+    height: calc(100% + 100vh);
     background-color: $mismagius;
     z-index: 900;
+    overflow: hidden;
+
+    .overlay {
+        height: calc(100% + 100vh);
+        overflow: hidden;
+    }
 }
 .main-content {
     padding-top: 58px;
     padding-bottom: calc(100% + 58px);
+    overflow: auto;
 }
