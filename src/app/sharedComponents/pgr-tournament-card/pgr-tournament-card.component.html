@@ -1,5 +1,6 @@
-<div class="tournament-card-container" [ngClass]="{ 'tall-mode': data.tallMode }">
-  <ngb-tabset>
+<div class="tournament-card-container" [ngClass]="{ 'tall-mode': data.tallMode, 'full-mode': fullMode }">
+  <h3 *ngIf="fullMode">{{data.name}}</h3>
+  <ngb-tabset *ngIf="!fullMode">
     <ngb-tab>
       <ng-template ngbTabTitle>{{data.name}}
       </ng-template>
@@ -29,9 +30,9 @@
                 </table>
               </ng-template>
             </ngb-tab>
-            <ngb-tab *ngIf="data.pods.length > 1">
+            <ngb-tab *ngIf="data.pods.length > 1 && !fullMode">
               <ng-template ngbTabTitle>
-                  <div (click)="openTournament(data.id)">More...</div>
+                <div (click)="openTournament(data.id)">More...</div>
               </ng-template>
             </ngb-tab>
           </ngb-tabset>
@@ -41,8 +42,8 @@
             <table class="table">
               <tbody>
                 <tr *ngFor="let item of data.items; index as i">
-                  <td><span class="oi item-icon"
-                      [ngClass]="{ 'oi-globe': item.tournamentMechanic === 'RAID', 'oi-loop': item.tournamentMechanic === 'PVP' }"></span>
+                  <td (click)="openTournament(item.tournamentId)"><span class="oi item-icon"
+                      [ngClass]="{ 'oi-globe': item.tournamentMechanic === 'PvE', 'oi-loop': item.tournamentMechanic === 'PvP' }"></span>
                     <span>{{ item.title }}</span>
                   </td>
                 </tr>
@@ -52,9 +53,86 @@
           </div>
         </ng-container>
         <div *ngIf="data?.showAdd" class="tournament-add-record" (click)="newSubmission(data.id)">
-          <span class="oi oi-plus add-record-icon"></span><span class="tournament-add-record-labeñ">Add new record...</span>
+          <span class="oi oi-plus add-record-icon"></span><span class="tournament-add-record-labeñ">Add new
+            record...</span>
         </div>
       </ng-template>
     </ngb-tab>
   </ngb-tabset>
+  <ng-container *ngIf="!!fullMode">
+    <ng-container *ngIf="!!data?.multiPod">
+      <ngb-tabset>
+        <ngb-tab *ngFor="let pod of data.pods; index as i">
+          <ng-template ngbTabTitle>{{pod.name}}</ng-template>
+          <ng-template ngbTabContent *ngIf="pod?.mechanic === 'PvE'">
+            <div class="multipod-full-mode-table">
+              <table class="table table-striped">
+                <thead *ngIf="data?.headers">
+                  <tr>
+                    <td *ngFor="let each of data.headers" [hidden]="each.hide">
+                      <span>{{ each.title }}</span>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sub of pod.submissions | slice:0:data.limit; index as j">
+                    <td [hidden]="false">{{ sub.username }}</td>
+                    <td [hidden]="true && !fullMode">{{ sub.fast }}</td>
+                    <td [hidden]="true && !fullMode">{{ sub.cinematic }}</td>
+                    <td [hidden]="false">{{ sub.mark }}</td>
+                    <td [hidden]="false">{{ sub.link }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-template>
+          <ng-template ngbTabContent *ngIf="pod?.mechanic === 'PvP'">
+            <table class="table table-striped">
+              <thead *ngIf="data?.headers">
+                <tr>
+                  <td *ngFor="let each of data.headers" [hidden]="each.hide">
+                    <span>{{ each.title }}</span>
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of pod.submissions | slice:0:(data.limit || 0); index as j">
+                  <td [hidden]="false">{{ sub.username }}</td>
+                  <td [hidden]="false" style="width: 120px">
+                    <span class="oi pvp-submission-score-mark" *ngFor="let point of sub.scoringData.result"
+                    [ngClass]="{ 'oi-x': point === 'lose', 'oi-target': point === 'win' }"></span>
+                  </td>
+                  <td [hidden]="false">{{ sub.versus }}</td>
+                  <td [hidden]="false">{{ sub.link }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab *ngIf="data.pods.length > 1 && !fullMode">
+          <ng-template ngbTabTitle>
+            <div (click)="openTournament(data.id)">More...</div>
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+    </ng-container>
+    <ng-container *ngIf="!data?.multiPod">
+      <div class="tournament-card-links">
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let item of data.items; index as i">
+              <td (click)="openTournament(item.tournamentId)"><span class="oi item-icon"
+                  [ngClass]="{ 'oi-globe': item.tournamentMechanic === 'PvE', 'oi-loop': item.tournamentMechanic === 'PvP' }"></span>
+                <span>{{ item.title }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </ng-container>
+    <div *ngIf="data?.showAdd" class="tournament-add-record" (click)="newSubmission(data.id)">
+      <span class="oi oi-plus add-record-icon"></span><span class="tournament-add-record-labeñ">Add new record...</span>
+    </div>
+  </ng-container>
 </div>

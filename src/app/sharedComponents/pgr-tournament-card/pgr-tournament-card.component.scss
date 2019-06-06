@@ -13,13 +13,24 @@
     margin-right: 5px;
 }
 .tournament-add-record {
-    position: absolute;
+    position: relative;
     bottom: -10px;
+}
+.pvp-submission-score-mark {
+    font-size: 1rem;
+    margin-right: 5px;
+}
+.multipod-full-mode-table {
+    overflow-x: scroll;
 }
 @media (min-width: 780px) {
     .tournament-card-container {
         width: 50%;
         float: left;
         overflow-x: hidden;
+
+        &.full-mode {
+            width: 100%;
+        }
     }
 }

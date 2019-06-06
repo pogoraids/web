@@ -29,6 +29,7 @@ export class PgrHomeComponent implements OnInit {
         id: 1,
         name: 'Scyther',
         hide: ['fast', 'cinematic'],
+        mechanic: 'PvE',
         submissions: [
           {id: 1, username: 'yourcalcprof', fast: '', cinematic: '', mark: 50, link: 'https://youtu.be/'},
           {id: 2, username: 'NetTools', fast: '', cinematic: '', mark: 70, link: 'https://youtu.be/'},
@@ -42,6 +43,7 @@ export class PgrHomeComponent implements OnInit {
       {
         id: 2,
         name: 'Gengar',
+        mechanic: 'PvE',
         submissions: [
           {id: 8, username: 'yourcalcprof', fast: '', cinematic: '', mark: 50, link: 'https://youtu.be/'},
           {id: 9, username: 'yourcalcprof', fast: '', cinematic: '', mark: 70, link: 'https://youtu.be/'},
@@ -50,24 +52,24 @@ export class PgrHomeComponent implements OnInit {
       }
     ]
   }, {
-    id: 2,
+    id: 3,
     name: 'Ongoing Competitions',
     multiPod: false,
     items: [{
       id: 1,
       title: 'V6 PokeDraft',
-      tournamentId: 1,
-      tournamentMechanic: 'RAID'
+      tournamentId: 4,
+      tournamentMechanic: 'PvE'
     }, {
       id: 2,
       title: 'PvP Draft',
       tournamentId: 2,
-      tournamentMechanic: 'PVP'
+      tournamentMechanic: 'PvP'
     }, {
       id: 3,
       title: 'Dodge Charger',
       tournamentId: 3,
-      tournamentMechanic: 'RAID'
+      tournamentMechanic: 'PvE'
     }]
   }];
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRouteSnapshot, Route, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pgr-tournament-card',
@@ -7,17 +8,19 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PgrTournamentCardComponent implements OnInit {
   @Input() data: any; // Tournament
+  @Input() fullMode: boolean;
 
-  constructor() { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   openTournament(id) {
     console.log('navigate to tournament id')
+    this.router.navigate(['/tournaments/', id]);
   }
 
   newSubmission(id) {
     console.log('navigate to submission form for tournament');
+    this.router.navigate(['/tournaments/' + id + '/submit']);
   }
 }

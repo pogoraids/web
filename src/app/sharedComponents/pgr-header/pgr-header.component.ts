@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OverlayService } from 'src/app/services/overlay.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pgr-header',
@@ -9,7 +10,8 @@ import { OverlayService } from 'src/app/services/overlay.service';
 export class PgrHeaderComponent implements OnInit {
   menuIsShowing: boolean;
 
-  constructor(private overlayService: OverlayService) { }
+  constructor(private overlayService: OverlayService,
+    private router: Router) { }
 
   ngOnInit() {
     this.overlayService.onOverlayChanged.subscribe((status) => {
@@ -22,6 +24,9 @@ export class PgrHeaderComponent implements OnInit {
     this.overlayService.onOverlayChanged.next(!this.menuIsShowing);
   }
 
+  goToHome() {
+    this.router.navigate(['/']);
+  }
   clickedOverlay() {
 
   }

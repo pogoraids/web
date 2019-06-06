@@ -6,7 +6,8 @@ import { PgrLoginComponent } from './users/pgr-login/pgr-login.component';
 const appRoutes: Routes = [
     { path: '', component: PgrHomeComponent, pathMatch: 'full' },
     { path: 'me', loadChildren: './users/users.module#UsersModule'},
-    { path: 'login', component: PgrLoginComponent }
+    { path: 'login', component: PgrLoginComponent },
+    { path: 'tournaments', loadChildren: './tournaments/tournaments.module#TournamentsModule'}
 ];
 
 @NgModule({
