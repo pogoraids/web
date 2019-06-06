@@ -19,8 +19,24 @@ export class PgrTournamentCardComponent implements OnInit {
     this.router.navigate(['/tournaments/', id]);
   }
 
+  openTournamentPod(id, podId) {
+    console.log('navigate to tournament id')
+    this.router.navigate(['/tournaments/', id, 'pod', podId]);
+  }
+
   newSubmission(id) {
     console.log('navigate to submission form for tournament');
     this.router.navigate(['/tournaments/' + id + '/submit']);
+  }
+
+  getFilteredSub(categoryId) {
+    console.log(categoryId);
+    return this.data && this.data.submissions.filter(each => {
+      return each.reviewerTags && each.reviewerTags.lastIndexOf(categoryId) !== -1;
+    });
+  }
+
+  get baseCategoryName(): string {
+    return this.data && this.data.mechanic === 'PvE' && 'Standard' || '';
   }
 }

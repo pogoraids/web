@@ -29,13 +29,28 @@ export class PgrTournamentsAvailableComponent implements OnInit {
         name: 'Scyther',
         hide: ['fast', 'cinematic'],
         mechanic: 'PvE',
+        headers: [
+          { title: 'Player' },
+          { title: 'Fast' },
+          { title: 'Cinematic' },
+          { title: 'Mark' },
+          { title: 'Link' }
+        ],
+        reviewerTagsAvailable: [
+          {id: 1, name: 'Non-weather boosted', description: 'Any submission that did not take advantage of the weather conditions to boost any attacker.'},
+          {id: 2, name: 'Unique-6', description: 'Any submission that uses 6 or less attackers without weather boost.'},
+          {id: 3, name: '1v1 (speedrun)', description: 'Submissions that were performed using a single attacker without rejoins.'},
+          {id: 4, name: 'Non-prehistoric', description: 'Scyther submissions that does not use Tyranitar, Cranidos, Rampardos, Omastar, Kabutops, Armaldo nor Cradily'}
+        ],
         submissions: [
-          { id: 1, username: 'yourcalcprof', fast: '', cinematic: '', mark: 50, link: 'https://youtu.be/' },
-          { id: 2, username: 'NetTools', fast: '', cinematic: '', mark: 70, link: 'https://youtu.be/' },
-          { id: 3, username: 'chapotrap9876', fast: '', cinematic: '', mark: 85, link: 'https://youtu.be/' },
-          { id: 4, username: 'drsp', fast: '', cinematic: '', mark: 12, link: 'https://youtu.be/' },
-          { id: 5, username: 'ChristiLouLou', fast: '', cinematic: '', mark: 66, link: 'https://youtu.be/' },
-          { id: 6, username: 'PokeTrnrSpark', fast: '', cinematic: '', mark: 34, link: 'https://youtu.be/' },
+          { id: 1, username: 'yourcalcprof', fast: '', cinematic: '', mark: 50, link: 'https://youtu.be/', reviewerTags: [
+            [1]
+          ]},
+          { id: 2, username: 'NetTools', fast: '', cinematic: '', mark: 70, link: 'https://youtu.be/', reviewerTags: [1, 4] },
+          { id: 3, username: 'chapotrap9876', fast: '', cinematic: '', mark: 85, link: 'https://youtu.be/', reviewerTags: [1] },
+          { id: 4, username: 'drsp', fast: '', cinematic: '', mark: 12, link: 'https://youtu.be/', reviewerTags: [4] },
+          { id: 5, username: 'ChristiLouLou', fast: '', cinematic: '', mark: 66, link: 'https://youtu.be/', reviewerTags: [3] },
+          { id: 6, username: 'PokeTrnrSpark', fast: '', cinematic: '', mark: 34, link: 'https://youtu.be/', reviewerTags: [1,3] },
           { id: 7, username: 'stangill', fast: '', cinematic: '', mark: 51, link: 'https://youtu.be/' }
         ]
       },

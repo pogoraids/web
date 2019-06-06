@@ -13,8 +13,8 @@ const routes: Routes = [
   { path: ':id/submit', component: PgrTournamentPodFormComponent},
   { path: 'new', component: PgrTournamentFormComponent},
   { path: 'edit', component: PgrTournamentFormComponent},
-  { path: 'pod/:podId', component: PgrTournamentPodComponent},
-  { path: 'pod/:podId/submit', component: PgrTournamentPodFormComponent}
+  { path: ':id/pod/:podId', component: PgrTournamentPodComponent},
+  { path: ':id/pod/:podId/submit', component: PgrTournamentPodFormComponent}
 ];
 
 @NgModule({

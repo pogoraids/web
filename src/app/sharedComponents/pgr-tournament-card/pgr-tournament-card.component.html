@@ -37,7 +37,7 @@
             </ngb-tab>
           </ngb-tabset>
         </ng-container>
-        <ng-container *ngIf="!data?.multiPod">
+        <ng-container *ngIf="!data?.multiPod && data?.items">
           <div class="tournament-card-links">
             <table class="table">
               <tbody>
@@ -85,6 +85,13 @@
                 </tbody>
               </table>
             </div>
+            <div class="multipod-available-categories" *ngIf="pod.reviewerTagsAvailable"
+              (click)="openTournamentPod(data.id, pod.id)">
+              Available rankings for
+              <div *ngFor="let category of pod.reviewerTagsAvailable">
+                <span>{{ category.name }}</span>
+              </div>
+            </div>
           </ng-template>
           <ng-template ngbTabContent *ngIf="pod?.mechanic === 'PvP'">
             <table class="table table-striped">
@@ -100,7 +107,7 @@
                   <td [hidden]="false">{{ sub.username }}</td>
                   <td [hidden]="false" style="width: 120px">
                     <span class="oi pvp-submission-score-mark" *ngFor="let point of sub.scoringData.result"
-                    [ngClass]="{ 'oi-x': point === 'lose', 'oi-target': point === 'win' }"></span>
+                      [ngClass]="{ 'oi-x': point === 'lose', 'oi-target': point === 'win' }"></span>
                   </td>
                   <td [hidden]="false">{{ sub.versus }}</td>
                   <td [hidden]="false">{{ sub.link }}</td>
@@ -116,7 +123,54 @@
         </ngb-tab>
       </ngb-tabset>
     </ng-container>
-    <ng-container *ngIf="!data?.multiPod">
+    <ng-container *ngIf="!data?.multiPod && !data.singlePod">
+      <h4>{{ baseCategoryName }}</h4>
+      <div class="multipod-full-mode-table">
+        <table class="table table-striped">
+          <thead *ngIf="data?.headers">
+            <tr>
+              <td *ngFor="let each of data.headers" [hidden]="each.hide">
+                <span>{{ each.title }}</span>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sub of data.submissions | slice:0:data.limit; index as j">
+              <td [hidden]="false">{{ sub.username }}</td>
+              <td [hidden]="true && !fullMode">{{ sub.fast }}</td>
+              <td [hidden]="true && !fullMode">{{ sub.cinematic }}</td>
+              <td [hidden]="false">{{ sub.mark }}</td>
+              <td [hidden]="false">{{ sub.link }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div *ngFor="let category of data.reviewerTagsAvailable">
+        <h4>{{ category.name }}</h4>
+        <span class="reviewer-tags-description">{{ category.description }}</span>
+        <div class="multipod-full-mode-table">
+          <table class="table table-striped">
+            <thead *ngIf="data?.headers">
+              <tr>
+                <td *ngFor="let each of data.headers" [hidden]="each.hide">
+                  <span>{{ each.title }}</span>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let sub of getFilteredSub(category.id) | slice:0:data.limit; index as j">
+                <td [hidden]="false">{{ sub.username }}</td>
+                <td [hidden]="true && !fullMode">{{ sub.fast }}</td>
+                <td [hidden]="true && !fullMode">{{ sub.cinematic }}</td>
+                <td [hidden]="false">{{ sub.mark }}</td>
+                <td [hidden]="false">{{ sub.link }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!data?.multiPod && data?.items">
       <div class="tournament-card-links">
         <table class="table">
           <tbody>
