@@ -1,4 +1,4 @@
-<div class="tournament-card-container" [ngClass]="{ 'tall-mode': data.tallMode, 'full-mode': fullMode }">
+<div class="tournament-card-container" *ngIf="!!data" [ngClass]="{ 'tall-mode': data?.tallMode, 'full-mode': fullMode }">
   <h3 *ngIf="fullMode">{{data.name}}</h3>
   <ngb-tabset *ngIf="!fullMode">
     <ngb-tab>
@@ -189,4 +189,9 @@
       <span class="oi oi-plus add-record-icon"></span><span class="tournament-add-record-labeñ">Add new record...</span>
     </div>
   </ng-container>
+</div>
+<div class="tournament-card-container" *ngIf="!data">
+  <div class="tournament-card-error">
+    <span>There is no data available for this tournament!</span>
+  </div>
 </div>

@@ -5,15 +5,19 @@ import { PgrLeftMenuComponent } from './pgr-left-menu/pgr-left-menu.component';
 import { PgrOverlayComponent } from './pgr-overlay/pgr-overlay.component';
 import { PgrTournamentCardComponent } from './pgr-tournament-card/pgr-tournament-card.component';
 import { PgrCarouselComponent } from './pgr-carousel/pgr-carousel.component';
-import { NgbCarouselModule, NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbTabsetModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { PgrMediaOutletComponent } from './pgr-media-outlet/pgr-media-outlet.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PgrHeaderComponent, PgrLeftMenuComponent, PgrOverlayComponent, PgrTournamentCardComponent, PgrCarouselComponent, PgrMediaOutletComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgbCarouselModule,
-    NgbTabsetModule
+    NgbTabsetModule,
+    NgbDropdownModule
   ],
   exports: [
     PgrHeaderComponent, 
@@ -23,7 +27,10 @@ import { PgrMediaOutletComponent } from './pgr-media-outlet/pgr-media-outlet.com
     PgrCarouselComponent,
     PgrMediaOutletComponent,
     NgbCarouselModule,
-    NgbTabsetModule
+    NgbTabsetModule,
+    NgbDropdownModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedComponentsModule { }

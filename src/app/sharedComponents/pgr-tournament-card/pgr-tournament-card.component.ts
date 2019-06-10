@@ -16,17 +16,17 @@ export class PgrTournamentCardComponent implements OnInit {
 
   openTournament(id) {
     console.log('navigate to tournament id')
-    this.router.navigate(['/tournaments/', id]);
+    this.router.navigate(['/tournaments', id]);
   }
 
   openTournamentPod(id, podId) {
     console.log('navigate to tournament id')
-    this.router.navigate(['/tournaments/', id, 'pod', podId]);
+    this.router.navigate(['/tournaments', id, 'pod', podId]);
   }
 
   newSubmission(id) {
     console.log('navigate to submission form for tournament');
-    this.router.navigate(['/tournaments/' + id + '/submit']);
+    this.router.navigate(['/tournaments/', id, 'submit']);
   }
 
   getFilteredSub(categoryId) {

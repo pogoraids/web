@@ -1,3 +1,49 @@
-<p>
-  pgr-tournament-pod-form works!
-</p>
+<div class="page-form-container">
+    <h3>New submission for </h3>
+    <form [formGroup]="form">
+        <div class="form-row">
+            <div class="col-md-2">
+                <div class="btn-group row">
+                    <button class="btn btn-outline-primary"
+                        [ngClass]="{'btn-primary': updatedMechanic === 'PvP', 'btn-outline-primary': updatedMechanic !== 'PvP'}"
+                        (click)="setMechanic($event)" value="PvP">PvP</button>
+                    <button class="btn btn-outline-primary"
+                        [ngClass]="{'btn-primary': updatedMechanic === 'PvE', 'btn-outline-primary': updatedMechanic !== 'PvE'}"
+                        (click)="setMechanic($event)" value="PvE">PvE</button>
+                </div>
+            </div>
+            <div class="col-md-4" *ngIf="updatedMechanic === 'PvE'">
+                <input type="text" class="form-control" id="playerName" formControlName="playerName"
+                    placeholder="Player name(s)" />
+            </div>
+            <div class="col-md-4" *ngIf="updatedMechanic === 'PvP'">
+                <div class="col">
+                <input type="text" class="form-control" id="playerName" formControlName="playerName"
+                    placeholder="Player name(s)" />
+                </div>
+                <div class="col versus-mode-container">
+                    <span class="versus-mode">VS</span>
+                </div>
+                <div class="col">
+                        <input type="text" class="form-control" id="versus" formControlName="versus"
+                        placeholder="Versus" /> 
+                </div>
+            </div>
+            <div class="col-md-2" *ngIf="updatedMechanic === 'PvE'">
+                <div ngbDropdown>
+                    <button class="btn btn-outline-primary" ngbDropdownToggle>Team</button>
+                    <div ngbDropdownMenu>
+                        <button *ngFor="let item of teamsList" ngbDropdownItem (click)="selectedTeam = item"
+                            [ngClass]="{ 'active': selectedTeam === item }">{{ item }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row" *ngIf="updatedMechanic === 'PvP'">
+            PvP
+        </div>
+        <div class="form-row" *ngIf="updatedMechanic === 'PvE'">
+            PvE
+        </div>
+    </form>
+</div>
