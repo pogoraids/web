@@ -6,3 +6,16 @@
     font-size: 1.2rem;
     font-weight: 800;
 }
+.pve-form-title {
+    display: block;
+    width: 100%;
+}
+.mechanic-selection {
+    padding: 1rem;
+}
+@media (max-device-width: 480px) {
+    .mechanic-selection {
+        width: 100%;
+        padding-right: 0 !important;
+    }
+}

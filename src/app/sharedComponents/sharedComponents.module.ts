@@ -5,7 +5,7 @@ import { PgrLeftMenuComponent } from './pgr-left-menu/pgr-left-menu.component';
 import { PgrOverlayComponent } from './pgr-overlay/pgr-overlay.component';
 import { PgrTournamentCardComponent } from './pgr-tournament-card/pgr-tournament-card.component';
 import { PgrCarouselComponent } from './pgr-carousel/pgr-carousel.component';
-import { NgbCarouselModule, NgbTabsetModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbTabsetModule, NgbDropdownModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { PgrMediaOutletComponent } from './pgr-media-outlet/pgr-media-outlet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     NgbCarouselModule,
     NgbTabsetModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    NgbTypeaheadModule
   ],
   exports: [
     PgrHeaderComponent, 
@@ -29,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbCarouselModule,
     NgbTabsetModule,
     NgbDropdownModule,
+    NgbTypeaheadModule,
     FormsModule,
     ReactiveFormsModule
   ]

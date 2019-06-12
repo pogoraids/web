@@ -3,7 +3,7 @@
     <form [formGroup]="form">
         <div class="form-row">
             <div class="col-md-2">
-                <div class="btn-group row">
+                <div class="btn-group row mechanic-selection">
                     <button class="btn btn-outline-primary"
                         [ngClass]="{'btn-primary': isPvP(), 'btn-outline-primary': !isPvP() }"
                         (click)="setMechanic($event)" value="PvP">PvP</button>
@@ -13,40 +13,121 @@
                 </div>
             </div>
             <div class="col-md-4" *ngIf="isPvE()">
-                <ng-container formArrayName="playerNames">
-                <div *ngFor="let player of playerNames.controls; let i=index" [formGroupName]="i">
-                    <input type="text" class="form-control" formControlName="player" placeholder="Player name" />
+                <div class="form-group" formArrayName="playerNames">
+                    <div *ngFor="let player of playerNames.controls; let i=index" [formGroupName]="i">
+                        <input type="text" class="form-control" formControlName="player" placeholder="Player name" />
+                    </div>
+                    <div>
+                        <button (click)="addAnotherPlayer()">
+                            <span class="oi oi-plus"></span></button>
+                    </div>
                 </div>
-                <button (click)="addAnotherPlayer()">
-                    <span class="oi oi-plus"></span></button>
-                </ng-container>
             </div>
             <div class="col-md-4" *ngIf="isPvP()">
-                <div class="col">
-                    <input type="text" class="form-control" id="playerName" formControlName="playerName"
-                        placeholder="You" />
-                </div>
-                <div class="col versus-mode-container">
-                    <span class="versus-mode">VS</span>
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" id="versus" formControlName="versus" placeholder="Versus" />
+                <div class="form-group">
+                    <div class="col">
+                        <input type="text" class="form-control" id="playerName" formControlName="playerName"
+                            placeholder="You" />
+                    </div>
+                    <div class="col versus-mode-container">
+                        <span class="versus-mode">VS</span>
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" id="versus" formControlName="versus"
+                            placeholder="Versus" />
+                    </div>
                 </div>
             </div>
-            <div class="col-md-2" *ngIf="isPvE()">
-                <div ngbDropdown>
-                    <button class="btn btn-outline-primary" ngbDropdownToggle>Team</button>
-                    <div ngbDropdownMenu>
-                        <button *ngFor="let item of teamsList" ngbDropdownItem (click)="selectedTeam = item"
-                            [ngClass]="{ 'active': selectedTeam === item }">{{ item }}</button>
-                    </div>
+            <div class="col-md-4" *ngIf="isPvE()">
+                <div class="form-group form-inline">
+                    <label class="form-label">Team</label>
+                    <select class="form-control">
+                        <option selected value="">Choose...</option>
+                        <option *ngFor="let item of teamsList">{{ item }}</option>
+                    </select>
                 </div>
             </div>
         </div>
         <div class="form-row" *ngIf="isPvP()">
+            PvP
         </div>
         <div class="form-row" *ngIf="isPvE()">
-            PvE
+            <!-- Refactor this in a submission-pve component -->
+            <ng-container>
+                <div class="pve-form-title">
+                    <h4>{{ PvESubmissionTitle }}</h4>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Raid boss</label>
+                            <input type="text" class="form-control" formControlName="podChallenge"
+                                [ngbTypeahead]="searchPodChallenge" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">{{ scoringMarkLabel }}</label>
+                            <input type="decimal" class="form-control" formControlName="scoringMark" />
+                            <small class="form-text text-muted">Criteria description</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Fast attack</label>
+                            <input type="text" class="form-control" formControlName="fastAttack"
+                                [ngbTypeahead]="searchFastAttacks" />
+                            <small class="form-text text-muted">Fast description</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Cinematic attack</label>
+                            <input type="text" class="form-control" formControlName="cinematicAttack"
+                                [ngbTypeahead]="searchCinematicAttacks" />
+                            <small class="form-text text-muted">Cinematic description</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label">Weather conditions</label>
+                            <select class="form-control" formControlName="environmentConditions">
+                                <option selected value="">Choose...</option>
+                                <option *ngFor="let cond of weatherConditions">{{ cond }}</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Were any of your (or your partners') moves boosted by the
+                                weather?</label>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="boostedAttackers"
+                                    formControlName="boostedAttackers" [value]="1" />
+                                <label class="form-check-label">Yes</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" class="form-check-input" name="boostedAttackers"
+                                    formControlName="boostedAttackers" [value]="0" />
+                                <label class="form-check-label">No</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Video link</label>
+                            <input class="form-control" type="text" formControlName="videoLink" />
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
         </div>
     </form>
 </div>
