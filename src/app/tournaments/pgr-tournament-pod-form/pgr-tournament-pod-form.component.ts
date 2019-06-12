@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-pgr-tournament-pod-form',
@@ -21,16 +21,38 @@ export class PgrTournamentPodFormComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      playerName: new FormControl('', [Validators.required]),
+      playerNames: this.fb.array([this.fb.group({ player: '' })], [Validators.required]),
       mechanic: new FormControl(),
+      versus: new FormControl()
     });
+
+    this.form.valueChanges.subscribe(value => {
+      console.log(value);
+    })
+    // patchValue with the mechanic type from parent pod/division
   }
 
-  get updatedMechanic()  {
+  get playerNames() {
+    return (<FormArray>this.form.get('playerNames'));
+  }
+
+  get updatedMechanic() {
     return this.form.get('mechanic').value;
   }
 
   setMechanic(event) {
     this.form.get('mechanic').patchValue(event.target.value);
+  }
+
+  isPvP() {
+    return this.updatedMechanic === 'PvP';
+  }
+
+  isPvE() {
+    return this.updatedMechanic === 'PvE';
+  }
+
+  addAnotherPlayer() {
+    this.playerNames.push(this.fb.group({ player: '' }));
   }
 }

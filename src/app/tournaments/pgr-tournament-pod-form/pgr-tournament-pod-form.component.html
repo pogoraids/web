@@ -5,31 +5,35 @@
             <div class="col-md-2">
                 <div class="btn-group row">
                     <button class="btn btn-outline-primary"
-                        [ngClass]="{'btn-primary': updatedMechanic === 'PvP', 'btn-outline-primary': updatedMechanic !== 'PvP'}"
+                        [ngClass]="{'btn-primary': isPvP(), 'btn-outline-primary': !isPvP() }"
                         (click)="setMechanic($event)" value="PvP">PvP</button>
                     <button class="btn btn-outline-primary"
-                        [ngClass]="{'btn-primary': updatedMechanic === 'PvE', 'btn-outline-primary': updatedMechanic !== 'PvE'}"
+                        [ngClass]="{'btn-primary': isPvE(), 'btn-outline-primary': !isPvE() }"
                         (click)="setMechanic($event)" value="PvE">PvE</button>
                 </div>
             </div>
-            <div class="col-md-4" *ngIf="updatedMechanic === 'PvE'">
-                <input type="text" class="form-control" id="playerName" formControlName="playerName"
-                    placeholder="Player name(s)" />
+            <div class="col-md-4" *ngIf="isPvE()">
+                <ng-container formArrayName="playerNames">
+                <div *ngFor="let player of playerNames.controls; let i=index" [formGroupName]="i">
+                    <input type="text" class="form-control" formControlName="player" placeholder="Player name" />
+                </div>
+                <button (click)="addAnotherPlayer()">
+                    <span class="oi oi-plus"></span></button>
+                </ng-container>
             </div>
-            <div class="col-md-4" *ngIf="updatedMechanic === 'PvP'">
+            <div class="col-md-4" *ngIf="isPvP()">
                 <div class="col">
-                <input type="text" class="form-control" id="playerName" formControlName="playerName"
-                    placeholder="Player name(s)" />
+                    <input type="text" class="form-control" id="playerName" formControlName="playerName"
+                        placeholder="You" />
                 </div>
                 <div class="col versus-mode-container">
                     <span class="versus-mode">VS</span>
                 </div>
                 <div class="col">
-                        <input type="text" class="form-control" id="versus" formControlName="versus"
-                        placeholder="Versus" /> 
+                    <input type="text" class="form-control" id="versus" formControlName="versus" placeholder="Versus" />
                 </div>
             </div>
-            <div class="col-md-2" *ngIf="updatedMechanic === 'PvE'">
+            <div class="col-md-2" *ngIf="isPvE()">
                 <div ngbDropdown>
                     <button class="btn btn-outline-primary" ngbDropdownToggle>Team</button>
                     <div ngbDropdownMenu>
@@ -39,10 +43,9 @@
                 </div>
             </div>
         </div>
-        <div class="form-row" *ngIf="updatedMechanic === 'PvP'">
-            PvP
+        <div class="form-row" *ngIf="isPvP()">
         </div>
-        <div class="form-row" *ngIf="updatedMechanic === 'PvE'">
+        <div class="form-row" *ngIf="isPvE()">
             PvE
         </div>
     </form>
