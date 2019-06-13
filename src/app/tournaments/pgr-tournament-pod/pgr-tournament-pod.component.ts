@@ -156,6 +156,7 @@ export class PgrTournamentPodComponent implements OnInit {
         this.tournament = (<Array<any>>tourney.pods).find(eachPod => {
           return eachPod.id === isPod;
         });
+        this.tournament.parentId = isTournament;
       }
     }
   }

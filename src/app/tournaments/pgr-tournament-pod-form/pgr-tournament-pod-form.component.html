@@ -1,26 +1,26 @@
 <div class="page-form-container">
-    <h3>New submission for </h3>
-    <form [formGroup]="form">
-        <div class="form-row">
-            <div class="col-md-2">
-                <div class="btn-group row mechanic-selection">
-                    <button class="btn btn-outline-primary"
-                        [ngClass]="{'btn-primary': isPvP(), 'btn-outline-primary': !isPvP() }"
-                        (click)="setMechanic($event)" value="PvP">PvP</button>
-                    <button class="btn btn-outline-primary"
-                        [ngClass]="{'btn-primary': isPvE(), 'btn-outline-primary': !isPvE() }"
-                        (click)="setMechanic($event)" value="PvE">PvE</button>
-                </div>
+    <h3>New submission for {{ podDivisionName }}</h3>
+    <form class="needs-validation" [formGroup]="form" (submit)="savePodRecord($event)" novalidate>
+        <div class="form-full" *ngIf="isMechanicTypeAvailable">
+            <div class="btn-group row mechanic-selection">
+                <button class="btn btn-outline-primary"
+                    [ngClass]="{'btn-primary': isPvP(), 'btn-outline-primary': !isPvP() }" (click)="setMechanic($event)"
+                    value="PvP">PvP</button>
+                <button class="btn btn-outline-primary"
+                    [ngClass]="{'btn-primary': isPvE(), 'btn-outline-primary': !isPvE() }" (click)="setMechanic($event)"
+                    value="PvE">PvE</button>
             </div>
+        </div>
+        <div class="form-row">
             <div class="col-md-4" *ngIf="isPvE()">
                 <div class="form-group" formArrayName="playerNames">
                     <div *ngFor="let player of playerNames.controls; let i=index" [formGroupName]="i">
-                        <input type="text" class="form-control" formControlName="player" placeholder="Player name" />
+                        <input type="text" class="form-control" formControlName="player" placeholder="Player name" required/>
                     </div>
-                    <div>
+                    <!-- <div>
                         <button (click)="addAnotherPlayer()">
                             <span class="oi oi-plus"></span></button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-md-4" *ngIf="isPvP()">
@@ -51,21 +51,21 @@
         <div class="form-row" *ngIf="isPvP()">
             PvP
         </div>
-        <div class="form-row" *ngIf="isPvE()">
+        <div class="form-row" *ngIf="isPvE()" style="padding: 0.5rem">
             <!-- Refactor this in a submission-pve component -->
             <ng-container>
                 <div class="pve-form-title">
                     <h4>{{ PvESubmissionTitle }}</h4>
                 </div>
                 <div class="form-row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" *ngIf="isPodChallengeAvailable">
                         <div class="form-group">
                             <label class="form-label">Raid boss</label>
                             <input type="text" class="form-control" formControlName="podChallenge"
                                 [ngbTypeahead]="searchPodChallenge" />
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-xl col-md-6">
                         <div class="form-group">
                             <label class="form-label">{{ scoringMarkLabel }}</label>
                             <input type="decimal" class="form-control" formControlName="scoringMark" />
@@ -101,8 +101,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="col-md-12">
+                <div class="form-row form-full">
+                    <div class="col-xl">
                         <div class="form-group">
                             <label class="form-label">Were any of your (or your partners') moves boosted by the
                                 weather?</label>
@@ -119,13 +119,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="col-md-12">
+                <div class="form-row form-full">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label class="form-label">Video link</label>
                             <input class="form-control" type="text" formControlName="videoLink" />
                         </div>
                     </div>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                    <button type="button" class="btn btn-secondary btn-lg btn-block">Reset</button>
                 </div>
             </ng-container>
         </div>
