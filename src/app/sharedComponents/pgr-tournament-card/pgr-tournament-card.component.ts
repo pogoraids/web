@@ -9,10 +9,15 @@ import { Router, ActivatedRouteSnapshot, Route, RouterStateSnapshot, ActivatedRo
 export class PgrTournamentCardComponent implements OnInit {
   @Input() data: any; // Tournament
   @Input() fullMode: boolean;
+  currentTournamentId = null;
+  currentPodId = null;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.currentTournamentId = this.activatedRoute.snapshot.params['id'];
+    this.currentPodId = this.activatedRoute.snapshot.params['podId'];
+  }
 
   openTournament(id) {
     console.log('navigate to tournament id')
@@ -24,9 +29,13 @@ export class PgrTournamentCardComponent implements OnInit {
     this.router.navigate(['/tournaments', id, 'pod', podId]);
   }
 
-  newSubmission(id) {
-    console.log('navigate to submission form for tournament');
-    this.router.navigate(['/tournaments/', id, 'submit']);
+  newSubmission(tournamentId) {
+    console.log('navigate to submission form for tournament', this.data, tournamentId, this.currentTournamentId, this.currentPodId);
+    if (!!tournamentId && !(this.currentTournamentId && this.currentPodId)) {
+      this.router.navigate(['/tournaments', tournamentId, 'submit']);
+    } else if (!!this.currentTournamentId && !!this.currentPodId) {
+      this.router.navigate(['/tournaments', this.currentTournamentId, 'pod', this.currentPodId, 'submit']);
+    }
   }
 
   getFilteredSub(categoryId) {
