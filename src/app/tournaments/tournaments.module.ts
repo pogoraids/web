@@ -6,6 +6,7 @@ import { PgrTournamentPodComponent } from './pgr-tournament-pod/pgr-tournament-p
 import { PgrTournamentPodFormComponent } from './pgr-tournament-pod-form/pgr-tournament-pod-form.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedComponentsModule } from '../sharedComponents/sharedComponents.module';
+import { TournamentsService } from './tournaments.service';
 
 const routes: Routes = [
   { path: 'available', component: PgrTournamentsAvailableComponent},
@@ -24,6 +25,9 @@ const routes: Routes = [
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    {provide: TournamentsService, useClass: TournamentsService}
   ]
 })
 export class TournamentsRoutingModule {}
