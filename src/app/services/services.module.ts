@@ -7,8 +7,8 @@ import { OverlayService } from './overlay.service';
   imports: [
     CommonModule
   ],
-  exports: [
-    OverlayService
+  providers: [
+    {provide: OverlayService, useClass: OverlayService}
   ]
 })
 export class ServicesModule { }
