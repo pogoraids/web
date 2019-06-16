@@ -20,17 +20,16 @@ export class PgrTournamentCardComponent implements OnInit {
   }
 
   openTournament(id) {
-    console.log('navigate to tournament id')
     this.router.navigate(['/tournaments', id]);
+    return false;
   }
 
   openTournamentPod(id, podId) {
-    console.log('navigate to tournament id')
     this.router.navigate(['/tournaments', id, 'pod', podId]);
+    return false;
   }
 
   newSubmission(tournamentId) {
-    console.log('navigate to submission form for tournament', this.data, tournamentId, this.currentTournamentId, this.currentPodId);
     if (!!tournamentId && !(this.currentTournamentId && this.currentPodId)) {
       this.router.navigate(['/tournaments', tournamentId, 'submit']);
     } else if (!!this.currentTournamentId && !!this.currentPodId) {
@@ -39,7 +38,6 @@ export class PgrTournamentCardComponent implements OnInit {
   }
 
   getFilteredSub(categoryId) {
-    console.log(categoryId);
     return this.data && this.data.submissions.filter(each => {
       return each.reviewerTags && each.reviewerTags.lastIndexOf(categoryId) !== -1;
     });
