@@ -12,8 +12,9 @@ body.overlay-shown {
     z-index: 1030;
     position: fixed;
     top: 58px;
-    padding: 1.25rem;
-    border: 1px solid $haunter-thumb;
+    padding: 1rem 0.5rem;
+    // border: 1px solid $haunter-thumb;
+    box-shadow: 0 0.7rem 0.8rem 0.025rem;
     border-top: none;
     border-left: none;
     background-color: $haunter;

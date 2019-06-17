@@ -1,3 +1,20 @@
+.actionable {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
 .subsection {
-    padding-left: 1rem;
+  padding-left: 1rem;
+  .actionable {
+    font-size: 1rem;
+  }
+}
+.first-level-icon {
+  font-size: 1rem;
+  margin-right: 5px;
+}
+.second-level-icon {
+  margin-right: 5px;
+}
+.third-level-icon {
+  margin-right: 5px;
 }

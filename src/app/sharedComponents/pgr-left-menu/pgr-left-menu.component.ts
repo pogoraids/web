@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { OverlayService } from 'src/app/services/overlay.service';
 
 @Component({
   selector: 'app-pgr-left-menu',
@@ -15,41 +17,55 @@ export class PgrLeftMenuComponent implements OnInit {
           label: 'PokeDraft v6', children: [
             { label: 'Scores' },
             { label: 'Divisions' }
-          ], icon: 'oi'
+          ], icon: 'oi oi-globe'
         },
         {
           label: 'PokeDraft v7', children: [
             { label: 'Scores' },
             { label: 'Divisions' }
-          ], icon: 'oi', collapsed: true
+          ], icon: 'oi oi-globe', collapsed: true
         },
         {
           label: 'PvPDraft', children: [
-            { label: 'Scores' },
+            { label: 'Scores', link: '/tournaments/2' },
             { label: 'Pods' }
-          ], icon: 'oi', collapsed: true
+          ], icon: 'oi oi-loop', collapsed: true
         },
         {
           label: 'PvPDraft v2', children: [
             { label: 'Register' },
             { label: 'Rules' }
-          ], icon: 'oi', collapsed: true
+          ], icon: 'oi oi-loop', collapsed: true
         },
-      ]
+      ], icon: 'oi oi-timer'
     },
     {
       label: 'Leaderboards', children: [
-        { label: 'Speed Raids', link: '/go/to/raids', icon: 'oi' },
-        { label: 'WQ Scorecard', link: '/go/to/wq', icon: 'oi' },
-        { label: 'ELO Scoreboard', link: '/go/to/elo/pvp', icon: 'oi' }
-      ], collapsed: true
+        { label: 'Raid Speed Runs', link: '/tournaments/1', icon: 'oi oi-globe' },
+        { label: 'WQ Scorecard', /*link: '/go/to/wq',*/ icon: 'oi oi-globe' },
+        { label: 'ELO Scoreboard', /*link: '/go/to/elo/pvp',*/ icon: 'oi oi-loop' }
+      ], icon: 'oi oi-spreadsheet', collapsed: true
     },
-    { label: 'Discord', link: 'discord.gg/pogoraids', icon: 'oi' }
+    { label: 'Discord', link: 'https://discord.gg/shMmCdN', icon: 'oi oi-people', external: true }
   ];
 
-  constructor() { }
+  constructor(private router: Router, private overlayService: OverlayService) { }
 
   ngOnInit() {
+  }
+
+  clickOption(dataPoint) {
+    if (dataPoint.link && !dataPoint.external) {
+      this.showing = !this.showing;
+      this.overlayService.toggle();
+      this.router.navigate([dataPoint.link]);
+    } else if (!!dataPoint.external) {
+      this.showing = !this.showing;
+      this.overlayService.toggle();
+      window.open(dataPoint.link, '_blank');
+    }
+
+    return false;
   }
 
 }
