@@ -27,7 +27,7 @@ export class PgrTournamentPodFormComponent implements OnInit {
   availableFastAttacksList = ['Acid', 'Confusion', 'Thundershock'];
   availableCinematicAttacksList = ['Doom Desire', 'Origin Pulse', 'Precipice Blades', 'Zap Cannon'];
   weatherConditions = ['Sunny/Clear', 'Partly Cloudy', 'Cloudy', 'Rainy', 'Snowy', 'Windy', 'Foggy'];
-  
+
   podInfo: any; // type Pod
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private ts: TournamentsService) { }
@@ -54,7 +54,7 @@ export class PgrTournamentPodFormComponent implements OnInit {
     });
 
     if (!!podId && !!tournamentId) {
-      this.ts.allPods({podId}).subscribe(pods => {
+      this.ts.allPods({ podId }).subscribe(pods => {
         console.log(pods);
 
         // Manual filter for demo purposes
@@ -67,8 +67,6 @@ export class PgrTournamentPodFormComponent implements OnInit {
             });
           }
         });
-
-        console.log(this.podInfo)
       });
 
       if (!!this.podInfo) {
@@ -77,16 +75,35 @@ export class PgrTournamentPodFormComponent implements OnInit {
           podChallenge: this.podInfo.name
         });
       }
+    } else if (!!tournamentId) {
+      this.ts.allPods({ podId }).subscribe(pods => {
+        let podInfo, challengeName;
+        // Manual filter for demo purposes
+        pods.forEach(tournament => {
+          if (tournament.id === tournamentId) {
+            challengeName = tournament.name;
+            podInfo = tournament.pods && tournament.pods[0];
+          }
+        });
+
+        if (!!podInfo) {
+          this.form.patchValue({
+            mechanic: podInfo.mechanic,
+            podChallenge: challengeName
+          });
+        }
+      });
     }
     // patchValue with the mechanic type from parent pod/division
+    console.log(4)
   }
-  
+
   get podDivisionName() {
-    return this.podInfo && this.podInfo.name;
+    return this.podInfo && this.podInfo.name || this.form.get('podChallenge').value;
   }
 
   get isMechanicTypeAvailable() {
-    return !this.podInfo || !this.podInfo.mechanic;
+    return this.form.get('mechanic').value === '' && (!this.podInfo || !this.podInfo.mechanic);
   }
 
   get isPodChallengeAvailable() {

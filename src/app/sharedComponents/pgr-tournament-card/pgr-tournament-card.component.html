@@ -1,8 +1,8 @@
 <div class="tournament-card-container" *ngIf="!!data"
   [ngClass]="{ 'tall-mode': data?.tallMode, 'full-mode': fullMode }">
   <h3 *ngIf="fullMode">{{data.name}}</h3>
-  <div *ngIf="fullMode" class="tournament-add-record-single-pod" (click)="newSubmission(data.parentId, data.id)">
-    <span class="oi oi-plus add-record-icon"></span><span class="tournament-add-record-label">Add new
+  <div *ngIf="fullMode" class="tournament-add-record-single-pod" (click)="newSubmission(data.id)">
+    <span class="oi oi-plus add-record-icon" style="color: salmon"></span><span class="tournament-add-record-label">Add new
       record...</span>
   </div>
   <ngb-tabset *ngIf="!fullMode">
@@ -58,7 +58,7 @@
           </div>
         </ng-container>
         <div *ngIf="data?.showAdd" class="tournament-add-record" (click)="newSubmission(data.id)">
-          <span class="oi oi-plus add-record-icon"></span><span class="tournament-add-record-label">Add new
+          <span class="oi oi-plus add-record-icon" style="color: lightblue"></span><span class="tournament-add-record-label">Add new
             record...</span>
         </div>
       </ng-template>
@@ -92,9 +92,11 @@
             </div>
             <div class="multipod-available-categories" *ngIf="pod.reviewerTagsAvailable"
               (click)="openTournamentPod(data.id, pod.id)">
-              Available rankings for
-              <div *ngFor="let category of pod.reviewerTagsAvailable">
-                <span>{{ category.name }}</span>
+              <div class="multipod-available-categories-title">Available rankings for</div>
+              <div class="multipod-available-categories-buttons">
+                <button class="btn btn-info" *ngFor="let category of pod.reviewerTagsAvailable">
+                  {{ category.name }}
+                </button>
               </div>
             </div>
           </ng-template>
@@ -191,7 +193,7 @@
       </div>
     </ng-container>
     <div *ngIf="data?.showAdd" class="tournament-add-record" (click)="newSubmission(data.id)">
-      <span class="oi oi-plus add-record-icon"></span><span class="tournament-add-record-label">Add new record...</span>
+      <span class="oi oi-plus add-record-icon" style="color: seagreen"></span><span class="tournament-add-record-label">Add new record...</span>
     </div>
   </ng-container>
 </div>

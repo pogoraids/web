@@ -1,44 +1,55 @@
 .tournament-card-container {
-    width: 100%;
-    padding: 1rem;
-    
-    &.tall-mode {
-        min-height: 450px;
-    }
+  width: 100%;
+  padding: 1rem;
+
+  &.tall-mode {
+    min-height: 450px;
+  }
 }
 .tournament-card-error {
-    padding: 1.5rem;
-    text-align: center;
+  padding: 1.5rem;
+  text-align: center;
 }
 .item-icon {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 .add-record-icon {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 .tournament-add-record {
-    position: relative;
-    bottom: -10px;
+  position: relative;
+  bottom: -10px;
 }
 .tournament-add-record-single-pod {
-    position: relative;
-    padding: 1rem;
+  position: relative;
+  padding: 1rem 0;
 }
 .pvp-submission-score-mark {
-    font-size: 1rem;
-    margin-right: 5px;
+  font-size: 1rem;
+  margin-right: 5px;
 }
 .multipod-full-mode-table {
-    overflow-x: scroll;
+  overflow-x: scroll;
+}
+.multipod-available-categories-title {
+    margin: .5rem 0;
+    font-weight: 600;
+}
+.multipod-available-categories-buttons {
+  text-align: center;
+
+  > button {
+    margin: 0 5px 5px;
+  }
 }
 @media (min-width: 780px) {
-    .tournament-card-container {
-        width: 50%;
-        float: left;
-        overflow-x: hidden;
+  .tournament-card-container {
+    width: 50%;
+    float: left;
+    overflow-x: hidden;
 
-        &.full-mode {
-            width: 100%;
-        }
+    &.full-mode {
+      width: 100%;
     }
+  }
 }

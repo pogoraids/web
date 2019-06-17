@@ -29,7 +29,13 @@ export class PgrTournamentCardComponent implements OnInit {
     return false;
   }
 
+  // ToDo: experimental
+  parseMechanic() {
+    
+  }
+
   newSubmission(tournamentId) {
+    console.log(this.data, tournamentId, this.currentTournamentId)
     if (!!tournamentId && !(this.currentTournamentId && this.currentPodId)) {
       this.router.navigate(['/tournaments', tournamentId, 'submit']);
     } else if (!!this.currentTournamentId && !!this.currentPodId) {

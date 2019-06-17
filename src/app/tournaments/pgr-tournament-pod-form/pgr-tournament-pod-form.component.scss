@@ -1,27 +1,61 @@
+@import "../../../_include.scss";
+
+.form-title {
+    margin-bottom: .75rem;
+}
+.multi-increment-input {
+    width: 80%;
+    margin-right: .5rem;
+    float: left;
+}
+.multi-increment-button {
+    float: left;
+}
+.multi-increment-delete {
+    float: right;
+}
 .versus-mode-container {
-    text-align: center;
-    padding: 0.25rem;
+  text-align: center;
+  padding: 0.25rem;
 }
 .versus-mode {
-    font-size: 1.2rem;
-    font-weight: 800;
+  font-size: 1.2rem;
+  font-weight: 800;
 }
 .pve-form-title {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 .mechanic-selection {
-    padding: 1rem;
+  padding: 1rem;
 }
 .form-full {
-    width: 100%;
+  width: 100%;
 }
 .form-buttons {
-    width: 100%;
+  width: 100%;
+  > .form-buttons-two {
+    width: 50%;
+    float: left;
+    &:last-child {
+      padding-left: 5px;
+    }
+  }
+  > .form-buttons-three {
+    width: 33%;
+    float: left;
+    &:not(:first-child) {
+      padding-left: 5px;
+    }
+  }
+}
+.pod-division-name-title {
+    color: $drifblim;
+    font-weight: 400;
 }
 @media (max-device-width: 480px) {
-    .mechanic-selection {
-        width: 100%;
-        padding-right: 0 !important;
-    }
+  .mechanic-selection {
+    width: 100%;
+    padding-right: 0 !important;
+  }
 }
