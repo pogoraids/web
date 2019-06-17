@@ -16,11 +16,11 @@
                 <div class="form-group" formArrayName="playerNames">
                     <div class="multi-increment-input" *ngFor="let player of playerNames.controls; let i=index" [formGroupName]="i">
                         <input type="text" class="form-control" formControlName="player" placeholder="Player name" required/>
-                        <div class="multi-increment-delete" *ngIf="i > 0">
+                        <!-- <div class="multi-increment-delete" *ngIf="i > 0">
                             <button class="btn btn-danger">
                                 <span class="oi oi-x"></span>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="multi-increment-button">
                         <button class="btn btn-secondary" (click)="addAnotherPlayer()">
