@@ -7,6 +7,7 @@
     width: 80%;
     margin-right: .5rem;
     float: left;
+    padding-bottom: .75rem;
 }
 .multi-increment-button {
     float: left;
@@ -30,7 +31,7 @@
   padding: 1rem;
 }
 .form-full {
-  width: 100%;
+  width: calc(100% + 10px);
 }
 .form-buttons {
   width: 100%;

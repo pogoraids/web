@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TournamentsService } from '../tournaments.service';
 
 @Component({
@@ -30,7 +30,7 @@ export class PgrTournamentPodFormComponent implements OnInit {
 
   podInfo: any; // type Pod
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private ts: TournamentsService) { }
+  constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private ts: TournamentsService) { }
 
   ngOnInit() {
     const tournamentId = Number.parseInt(this.activatedRoute.snapshot.params['id']);
@@ -50,16 +50,14 @@ export class PgrTournamentPodFormComponent implements OnInit {
     });
 
     this.form.valueChanges.subscribe(value => {
-      console.log(value);
+      // Handle this?
     });
 
     if (!!podId && !!tournamentId) {
       this.ts.allPods({ podId }).subscribe(pods => {
-        console.log(pods);
-
         // Manual filter for demo purposes
         pods.forEach(tournament => {
-          if (tournament.id == tournamentId) {
+          if (tournament.id === tournamentId) {
             tournament.pods.forEach(pod => {
               if (pod.id === podId) {
                 this.podInfo = pod;
@@ -77,7 +75,8 @@ export class PgrTournamentPodFormComponent implements OnInit {
       }
     } else if (!!tournamentId) {
       this.ts.allPods({ podId }).subscribe(pods => {
-        let podInfo, challengeName;
+        let podInfo;
+        let challengeName;
         // Manual filter for demo purposes
         pods.forEach(tournament => {
           if (tournament.id === tournamentId) {
@@ -94,8 +93,6 @@ export class PgrTournamentPodFormComponent implements OnInit {
         }
       });
     }
-    // patchValue with the mechanic type from parent pod/division
-    console.log(4)
   }
 
   get podDivisionName() {
@@ -111,7 +108,7 @@ export class PgrTournamentPodFormComponent implements OnInit {
   }
 
   get playerNames() {
-    return (<FormArray>this.form.get('playerNames'));
+    return this.form.get('playerNames') as FormArray;
   }
 
   get updatedMechanic() {
@@ -147,12 +144,28 @@ export class PgrTournamentPodFormComponent implements OnInit {
   }
 
   savePodRecord(event) {
-    console.log(event)
+    console.log(event);
+
+    const tournamentId = Number.parseInt(this.activatedRoute.snapshot.params['id']);
+    const podId = Number.parseInt(this.activatedRoute.snapshot.params['podId']);
+    let redirect;
+
+    if (!!tournamentId && !!podId) {
+      redirect = ['/tournaments', tournamentId, 'pod', podId];
+    } else if (!!tournamentId) {
+      redirect = ['/tournaments', tournamentId];
+    } else {
+      redirect = ['/'];
+    }
 
     if (this.form.valid) {
-      console.log('valid', this.form.value)
+      console.log('valid', this.form.value);
+
+      if (!!redirect) {
+        this.router.navigate(redirect);
+      }
     } else {
-      console.log(this.form.value)
+      console.log(this.form.value);
     }
   }
 
