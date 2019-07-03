@@ -75,11 +75,33 @@ export class TournamentsService {
       multiPod: true,
       tallMode: true,
       limit: 10,
+      members: [
+        {id: 'a1', username: 'vlfph'},
+        {id: 'a2', username: 'NetTools'},
+        {id: 'a3', username: 'IAmTheBlackMetal'},
+        {id: 'a4', username: 'drsp'},
+        {id: 'a5', username: 'PokeTrnrSpark'},
+        {id: 'a6', username: 'ChristiLouLou'},
+        {id: 'a7', username: 'stangill'},
+        {id: 'a8', username: 'yourcalcprof'},
+        {id: 'a9', username: 'enanoxUY'}
+      ],
       pods: [
         {
           id: 3,
           name: 'Skarmory',
           mechanic: 'PvP',
+          members: [
+            {id: 'a1', username: 'vlfph'},
+            {id: 'a2', username: 'NetTools'},
+            {id: 'a3', username: 'IAmTheBlackMetal'},
+            {id: 'a4', username: 'drsp'},
+            {id: 'a5', username: 'PokeTrnrSpark'},
+            {id: 'a6', username: 'ChristiLouLou'},
+            {id: 'a7', username: 'stangill'},
+            {id: 'a8', username: 'yourcalcprof'},
+            {id: 'a9', username: 'enanoxUY'}
+          ],
           submissions: [{
             id: 100,
             username: 'drsp',
