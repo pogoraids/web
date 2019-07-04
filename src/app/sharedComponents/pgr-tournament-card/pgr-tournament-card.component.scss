@@ -27,6 +27,11 @@
 .pvp-submission-score-mark {
   font-size: 1rem;
   margin-right: 5px;
+
+  &.oi-target {
+    position: relative;
+    top: 3px;
+  }
 }
 .multipod-full-mode-table {
   overflow-x: scroll;
@@ -52,4 +57,10 @@
       width: 100%;
     }
   }
+}
+.green {
+  color: #28a745;
+}
+.red {
+  color: #dc3545;
 }

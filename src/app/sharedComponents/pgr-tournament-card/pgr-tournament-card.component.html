@@ -112,12 +112,12 @@
               <tbody>
                 <tr *ngFor="let sub of pod.submissions | slice:0:(data.limit || 0); index as j">
                   <td [hidden]="false">{{ sub.username }}</td>
-                  <td [hidden]="false" style="width: 120px">
+                  <td [hidden]="false" style="text-align: center">
                     <span class="oi pvp-submission-score-mark" *ngFor="let point of sub.scoringData.result"
-                      [ngClass]="{ 'oi-x': point === 'lose', 'oi-target': point === 'win' }"></span>
+                      [ngClass]="{ 'oi-x': point === 'lose', 'oi-target': point === 'win', 'green': point === 'win', 'red': point === 'lose' }"></span>
                   </td>
                   <td [hidden]="false">{{ sub.versus }}</td>
-                  <td [hidden]="false">{{ sub.link }}</td>
+                  <td [hidden]="true">{{ sub.link }}</td>
                 </tr>
               </tbody>
             </table>
