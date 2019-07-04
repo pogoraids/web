@@ -29,7 +29,8 @@
                 </div>
             </div>
             <div class="col-md-4" *ngIf="isPvP()">
-                <div class="form-group">
+                <app-pgr-pvp-battle-form [currentForm]="form"></app-pgr-pvp-battle-form>
+                <!-- <div class="form-group">
                     <div class="col">
                         <input type="text" class="form-control" id="playerName" formControlName="playerName"
                             placeholder="You" />
@@ -41,7 +42,7 @@
                         <input type="text" class="form-control" id="versus" formControlName="versus"
                             placeholder="Versus" />
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="col-md-4" *ngIf="isPvE()">
                 <div class="form-group form-inline">
@@ -52,9 +53,6 @@
                     </select>
                 </div>
             </div>
-        </div>
-        <div class="form-row" *ngIf="isPvP()">
-            PvP
         </div>
         <div class="form-row" *ngIf="isPvE()" style="padding: 0.5rem">
             <!-- Refactor this in a submission-pve component -->

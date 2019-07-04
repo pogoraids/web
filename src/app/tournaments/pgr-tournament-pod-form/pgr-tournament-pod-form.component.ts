@@ -35,18 +35,18 @@ export class PgrTournamentPodFormComponent implements OnInit {
   ngOnInit() {
     const tournamentId = Number.parseInt(this.activatedRoute.snapshot.params['id']);
     const podId = Number.parseInt(this.activatedRoute.snapshot.params['podId']);
-
+    // ToDo: move required fields to a lower hierarchy component
     this.form = this.fb.group({
-      playerNames: this.fb.array([this.fb.group({ player: new FormControl('', [Validators.required]) })]),
+      playerNames: this.fb.array([this.fb.group({ player: new FormControl('') })]),
       mechanic: new FormControl(),
       versus: new FormControl(''/*, [Validators.required]*/),
-      podChallenge: new FormControl('', [Validators.required]),
-      scoringMark: new FormControl('', [Validators.required]),
+      podChallenge: new FormControl(''),
+      scoringMark: new FormControl(''),
       fastAttack: new FormControl(),
-      cinematicAttack: new FormControl('', [Validators.required]),
-      environmentConditions: new FormControl('', [Validators.required]),
-      boostedAttackers: new FormControl('', [Validators.required]),
-      videoLink: new FormControl('', [Validators.required])
+      cinematicAttack: new FormControl(''),
+      environmentConditions: new FormControl(''),
+      boostedAttackers: new FormControl(''),
+      videoLink: new FormControl('')
     });
 
     this.form.valueChanges.subscribe(value => {

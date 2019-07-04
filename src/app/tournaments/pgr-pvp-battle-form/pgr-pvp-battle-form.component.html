@@ -1,0 +1,51 @@
+<div class="form-group" [formGroup]="currentForm">
+  <div class="row" style="padding: 1rem" *ngIf="tournament?.pods && tournament?.multiPod">
+    <div class="col">
+      <select class="form-control" formControlName="podId">
+        <option selected value="">Select a pod</option>
+        <option *ngFor="let pod of tournament?.pods" [value]="pod.id">{{ pod.name }}</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <input type="text" class="form-control" id="playerName" formControlName="playerName" placeholder="You"
+      [ngbTypeahead]="searchPlayerName" />
+  </div>
+  <div class="col versus-mode-container">
+    <span class="versus-mode">VS</span>
+  </div>
+  <div class="col">
+    <input type="text" class="form-control" id="versus" formControlName="versus" placeholder="Versus"
+      [ngbTypeahead]="searchVersusName" />
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="label-disclaimer" [ngClass]="{'gray': allScoresInformed()}">
+        <label>Please indicate in order the results from the {{ tournament?.scoringData.matches }} encounter{{ tournament?.scoringData.matches > 1 && 's' }}. Bear in mind the amount of matches performed could score for extra points on general leaderboards.</label>
+      </div>
+      <div class="buttons">
+        <div class="top">
+          <button type="button" *ngFor="let each of scoringDataResults; index as index" class="btn button-score"
+            [ngClass]="{'btn-success': each === 'win', 'btn-info': !each}" (click)="save(index, 'win')">
+            <span class="oi oi-target"></span></button>
+        </div>
+        <div class="bottom">
+          <button type="button" *ngFor="let each of scoringDataResults; index as i" class="btn button-score"
+            [ngClass]="{'btn-danger': each === 'loss', 'btn-info': !each}" (click)="save(i, 'loss')">
+            <span class="oi oi-x"></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row all-informed-disclaimer" *ngIf="allScoresInformed()">
+    <label>Great! Now that you have reported the score, please submit it!</label>
+  </div>
+</div>
+<div class="form-buttons" *ngIf="allScoresInformed()">
+  <div class="form-buttons-two">
+    <button type="submit" class="btn btn-primary btn-lg-2 btn-block">Submit</button>
+  </div>
+  <div class="form-buttons-two">
+    <button type="button" class="btn btn-secondary btn-lg-2 btn-block" (click)="reset()">Reset</button>
+  </div>
+</div>

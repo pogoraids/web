@@ -7,15 +7,16 @@ import { PgrTournamentPodFormComponent } from './pgr-tournament-pod-form/pgr-tou
 import { RouterModule, Routes } from '@angular/router';
 import { SharedComponentsModule } from '../sharedComponents/sharedComponents.module';
 import { TournamentsService } from './tournaments.service';
+import { PgrPvpBattleFormComponent } from './pgr-pvp-battle-form/pgr-pvp-battle-form.component';
 
 const routes: Routes = [
-  { path: 'available', component: PgrTournamentsAvailableComponent},
-  { path: ':id', component: PgrTournamentsAvailableComponent},
-  { path: ':id/submit', component: PgrTournamentPodFormComponent},
-  { path: 'new', component: PgrTournamentFormComponent},
-  { path: 'edit', component: PgrTournamentFormComponent},
-  { path: ':id/pod/:podId', component: PgrTournamentPodComponent},
-  { path: ':id/pod/:podId/submit', component: PgrTournamentPodFormComponent}
+  { path: 'available', component: PgrTournamentsAvailableComponent },
+  { path: ':id', component: PgrTournamentsAvailableComponent },
+  { path: ':id/submit', component: PgrTournamentPodFormComponent },
+  { path: 'new', component: PgrTournamentFormComponent },
+  { path: 'edit', component: PgrTournamentFormComponent },
+  { path: ':id/pod/:podId', component: PgrTournamentPodComponent },
+  { path: ':id/pod/:podId/submit', component: PgrTournamentPodFormComponent }
 ];
 
 @NgModule({
@@ -27,13 +28,19 @@ const routes: Routes = [
     RouterModule
   ],
   providers: [
-    {provide: TournamentsService, useClass: TournamentsService}
+    { provide: TournamentsService, useClass: TournamentsService }
   ]
 })
-export class TournamentsRoutingModule {}
+export class TournamentsRoutingModule { }
 
 @NgModule({
-  declarations: [PgrTournamentFormComponent, PgrTournamentsAvailableComponent, PgrTournamentPodComponent, PgrTournamentPodFormComponent],
+  declarations: [
+    PgrTournamentFormComponent,
+    PgrTournamentsAvailableComponent,
+    PgrTournamentPodComponent,
+    PgrTournamentPodFormComponent,
+    PgrPvpBattleFormComponent
+  ],
   imports: [
     CommonModule,
     SharedComponentsModule,

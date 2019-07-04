@@ -160,7 +160,10 @@ export class TournamentsService {
             link: 'http://youtu.be/'
           }]
         }
-      ]
+      ],
+      scoringData: {
+        matches: 3
+      },
     }]);
   }
 }
