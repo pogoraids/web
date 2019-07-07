@@ -44,3 +44,16 @@ body.overlay-shown {
 .page-form-container {
     padding: 1rem;
 }
+.top-card-hierarchy > .nav.nav-tabs,
+.inner-card-with-more > .nav.nav-tabs {
+    .nav-item {
+        &:last-child:hover a {
+            border: 0;
+            background: none;
+        }
+        &:last-child:not(:first-child) {
+            position: absolute;
+            right: 0;
+        }
+    }
+}

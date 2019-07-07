@@ -52,4 +52,16 @@ export class PgrTournamentCardComponent implements OnInit {
   get baseCategoryName(): string {
     return this.data && this.data.mechanic === 'PvE' && 'Standard' || '';
   }
+
+  topTabChange(event) {
+    if (event.nextId === 'topAdd') {
+      this.newSubmission(this.data.id);
+    }
+  }
+
+  innerTabChange(event) {
+    if (event.nextId === 'innerMore') {
+      this.openTournament(this.data.id);
+    }
+  }
 }

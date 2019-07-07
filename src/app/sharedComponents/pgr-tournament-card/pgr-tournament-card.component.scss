@@ -24,6 +24,12 @@
   position: relative;
   padding: 1rem 0;
 }
+.tournament-add-record-top-tab {
+  position: relative;
+}
+.add-record:hover a {
+  border: 0;
+}
 .pvp-submission-score-mark {
   font-size: 1rem;
   margin-right: 5px;
@@ -37,8 +43,8 @@
   overflow-x: scroll;
 }
 .multipod-available-categories-title {
-    margin: .5rem 0;
-    font-weight: 600;
+  margin: 0.5rem 0;
+  font-weight: 600;
 }
 .multipod-available-categories-buttons {
   text-align: center;
@@ -63,4 +69,7 @@
 }
 .red {
   color: #dc3545;
+}
+.more-records {
+  margin-left: 5px;
 }

@@ -2,16 +2,17 @@
   [ngClass]="{ 'tall-mode': data?.tallMode, 'full-mode': fullMode }">
   <h3 *ngIf="fullMode">{{data.name}}</h3>
   <div *ngIf="fullMode" class="tournament-add-record-single-pod" (click)="newSubmission(data.id)">
-    <span class="oi oi-plus add-record-icon" style="color: salmon"></span><span class="tournament-add-record-label">Add new
+    <span class="oi oi-plus add-record-icon" style="color: salmon"></span><span class="tournament-add-record-label">Add
+      new
       record...</span>
   </div>
-  <ngb-tabset *ngIf="!fullMode">
+  <ngb-tabset *ngIf="!fullMode" (tabChange)="topTabChange($event)" class="top-card-hierarchy">
     <ngb-tab>
       <ng-template ngbTabTitle>{{data.name}}
       </ng-template>
       <ng-template ngbTabContent>
         <ng-container *ngIf="!!data?.multiPod">
-          <ngb-tabset>
+          <ngb-tabset (tabChange)="innerTabChange($event)" class="inner-card-with-more">
             <ngb-tab *ngFor="let pod of data.pods; index as i">
               <ng-template ngbTabTitle>{{pod.name}}</ng-template>
               <ng-template ngbTabContent>
@@ -35,9 +36,9 @@
                 </table>
               </ng-template>
             </ngb-tab>
-            <ngb-tab *ngIf="data.pods.length > 1 && !fullMode">
+            <ngb-tab id="innerMore" *ngIf="data.pods.length > 1 && !fullMode">
               <ng-template ngbTabTitle>
-                <div (click)="openTournament(data.id)">More...</div>
+                <div><span class="oi oi-eye" style="color: salmon"></span><span class="more-records">More...</span></div>
               </ng-template>
             </ngb-tab>
           </ngb-tabset>
@@ -57,8 +58,18 @@
 
           </div>
         </ng-container>
-        <div *ngIf="data?.showAdd" class="tournament-add-record" (click)="newSubmission(data.id)">
-          <span class="oi oi-plus add-record-icon" style="color: lightblue"></span><span class="tournament-add-record-label">Add new
+        <!--<div *ngIf="data?.showAdd" class="tournament-add-record" (click)="newSubmission(data.id)">
+          <span class="oi oi-plus add-record-icon" style="color: lightblue"></span><span
+            class="tournament-add-record-label">Add new
+            record...</span>
+        </div>-->
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab *ngIf="data.showAdd" id="topAdd" [ngClass]="{'add-record': true}">
+      <ng-template ngbTabTitle>
+        <div class="tournament-add-record-top-tab">
+          <span class="oi oi-plus add-record-icon" style="color: salmon"></span><span
+            class="tournament-add-record-label">Add new
             record...</span>
         </div>
       </ng-template>
@@ -125,7 +136,7 @@
         </ngb-tab>
         <ngb-tab *ngIf="data.pods.length > 1 && !fullMode">
           <ng-template ngbTabTitle>
-            <div (click)="openTournament(data.id)">More...</div>
+            <div (click)="openTournament(data.id)"><span class="oi oi-eye" style="color: salmon"></span>More...</div>
           </ng-template>
         </ngb-tab>
       </ngb-tabset>
@@ -193,7 +204,8 @@
       </div>
     </ng-container>
     <div *ngIf="data?.showAdd" class="tournament-add-record" (click)="newSubmission(data.id)">
-      <span class="oi oi-plus add-record-icon" style="color: seagreen"></span><span class="tournament-add-record-label">Add new record...</span>
+      <span class="oi oi-plus add-record-icon" style="color: seagreen"></span><span
+        class="tournament-add-record-label">Add new record...</span>
     </div>
   </ng-container>
 </div>
