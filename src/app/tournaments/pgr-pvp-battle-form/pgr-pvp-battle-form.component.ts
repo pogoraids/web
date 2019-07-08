@@ -14,6 +14,7 @@ export class PgrPvpBattleFormComponent implements OnInit {
   @Input() currentForm: FormGroup;
   tournament: any;
   scoringDataResults = [];
+  videoLinksHelp = 'If you have any recordings from your battles (specially to resolve any disputes), please provide them on each line of this field.';
 
   constructor(private ts: TournamentsService, private activatedRoute: ActivatedRoute) { }
 

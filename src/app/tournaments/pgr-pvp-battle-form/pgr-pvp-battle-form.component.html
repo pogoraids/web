@@ -40,6 +40,10 @@
   <div class="row all-informed-disclaimer" *ngIf="allScoresInformed()">
     <label>Great! Now that you have reported the score, please submit it!</label>
   </div>
+  <div class="row video-links-input">
+    <label class="form-label">Video link(s) - Optional</label>
+    <textarea class="form-control" [rows]="tournament.scoringData.matches" [placeholder]="videoLinksHelp"></textarea>
+  </div>
 </div>
 <div class="form-buttons" *ngIf="allScoresInformed()">
   <div class="form-buttons-two">
