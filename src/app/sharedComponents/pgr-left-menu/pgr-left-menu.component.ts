@@ -42,7 +42,7 @@ export class PgrLeftMenuComponent implements OnInit {
     {
       label: 'Leaderboards', children: [
         { label: 'Raid Speed Runs', link: '/tournaments/1', icon: 'oi oi-globe' },
-        { label: 'WQ Scorecard', /*link: '/go/to/wq',*/ icon: 'oi oi-globe' },
+        { label: 'WQ Scorecard', link: '/tournaments/4', icon: 'oi oi-globe' },
         { label: 'ELO Scoreboard', /*link: '/go/to/elo/pvp',*/ icon: 'oi oi-loop' }
       ], icon: 'oi oi-spreadsheet', collapsed: true
     },

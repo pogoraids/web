@@ -70,6 +70,11 @@ export class PgrHomeComponent implements OnInit {
       title: 'Dodge Charger',
       tournamentId: 3,
       tournamentMechanic: 'PvE'
+    }, {
+      id: 4,
+      title: 'WQ Scorecard',
+      tournamentId: 4,
+      tournamentMechanic: 'PvE'
     }]
   }];
 
