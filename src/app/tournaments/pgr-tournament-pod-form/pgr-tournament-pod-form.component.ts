@@ -12,23 +12,10 @@ import { TournamentsService } from '../tournaments.service';
 })
 export class PgrTournamentPodFormComponent implements OnInit {
   form: FormGroup;
-  teamsList: string[] = [
-    'Multi-team',
-    'Mystic',
-    'Valor',
-    'Instinct'
-  ];
-  selectedTeam = '';
   mechanic = '';
-  playerQtyPlurals = ['Solo', 'Duo', 'Trio', 'Quad', 'Multi (5+)'];
-  pveName = 'Raid';
   pvpName = 'Trainer Battle';
-  availablePodsList = ['Scyther', 'Gengar', 'Tyranitar'];
-  availableFastAttacksList = ['Acid', 'Confusion', 'Thundershock'];
-  availableCinematicAttacksList = ['Doom Desire', 'Origin Pulse', 'Precipice Blades', 'Zap Cannon'];
-  weatherConditions = ['Sunny/Clear', 'Partly Cloudy', 'Cloudy', 'Rainy', 'Snowy', 'Windy', 'Foggy'];
-
   podInfo: any; // type Pod
+  podTitle = '';
 
   constructor(private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute, private ts: TournamentsService) { }
 
@@ -37,16 +24,8 @@ export class PgrTournamentPodFormComponent implements OnInit {
     const podId = Number.parseInt(this.activatedRoute.snapshot.params['podId']);
     // ToDo: move required fields to a lower hierarchy component
     this.form = this.fb.group({
-      playerNames: this.fb.array([this.fb.group({ player: new FormControl('') })]),
       mechanic: new FormControl(),
-      versus: new FormControl(''/*, [Validators.required]*/),
-      podChallenge: new FormControl(''),
-      scoringMark: new FormControl(''),
-      fastAttack: new FormControl(),
-      cinematicAttack: new FormControl(''),
-      environmentConditions: new FormControl(''),
-      boostedAttackers: new FormControl(''),
-      videoLink: new FormControl('')
+      podChallenge: new FormControl('')
     });
 
     this.form.valueChanges.subscribe(value => {
@@ -80,35 +59,35 @@ export class PgrTournamentPodFormComponent implements OnInit {
         // Manual filter for demo purposes
         pods.forEach(tournament => {
           if (tournament.id === tournamentId) {
+            console.log(tournament)
             challengeName = tournament.name;
-            podInfo = tournament.pods && tournament.pods[0];
+
+            if (tournament.pods.length > 0) {
+              podInfo = tournament.pods && tournament.pods[0];
+            } else {
+              podInfo = { mechanic: tournament.mechanic}
+            }
           }
         });
 
         if (!!podInfo) {
           this.form.patchValue({
             mechanic: podInfo.mechanic,
-            podChallenge: challengeName
+            podChallenge: ''
           });
+
+          this.podTitle = challengeName;
         }
       });
     }
   }
 
   get podDivisionName() {
-    return this.podInfo && this.podInfo.name || this.form.get('podChallenge').value;
+    return this.podInfo && this.podInfo.name || this.podTitle || this.form.get('podChallenge').value;
   }
 
   get isMechanicTypeAvailable() {
     return this.form.get('mechanic').value === '' && (!this.podInfo || !this.podInfo.mechanic);
-  }
-
-  get isPodChallengeAvailable() {
-    return !this.podInfo || !this.podInfo.name;
-  }
-
-  get playerNames() {
-    return this.form.get('playerNames') as FormArray;
   }
 
   get updatedMechanic() {
@@ -125,22 +104,6 @@ export class PgrTournamentPodFormComponent implements OnInit {
 
   isPvE() {
     return this.updatedMechanic === 'PvE';
-  }
-
-  addAnotherPlayer() {
-    this.playerNames.push(this.fb.group({ player: '' }));
-  }
-
-  get PvESubmissionTitle() {
-    return `${this.PvEPlayerQty} ${this.pveName}`;
-  }
-
-  get PvEPlayerQty() {
-    return this.playerNames.controls.length >= 5 && this.playerQtyPlurals[4] || this.playerQtyPlurals[this.playerNames.controls.length - 1];
-  }
-
-  get scoringMarkLabel() {
-    return 'Time mark';
   }
 
   savePodRecord(event) {
@@ -168,25 +131,4 @@ export class PgrTournamentPodFormComponent implements OnInit {
       console.log(this.form.value);
     }
   }
-
-  searchPodChallenge = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length < 2 ? [] :
-        this.availablePodsList.filter(elem => elem.toLowerCase().indexOf(term.toLowerCase()) !== -1).slice(0, 10)));
-
-  searchFastAttacks = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length < 2 ? [] :
-        this.availableFastAttacksList.filter(elem => elem.toLowerCase().indexOf(term.toLowerCase()) !== -1).slice(0, 10)));
-
-  searchCinematicAttacks = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length < 2 ? [] :
-        this.availableCinematicAttacksList.filter(elem => elem.toLowerCase().indexOf(term.toLowerCase()) !== -1).slice(0, 10)));
 }

@@ -12,39 +12,23 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="col-md-4" *ngIf="isPvE()">
-                <div class="form-group" formArrayName="playerNames">
+            <div class="col-xl-2" *ngIf="isPvE()">
+                <app-pgr-pve-battle-form [currentForm]="form" [podInfo]="podInfo"></app-pgr-pve-battle-form>
+                <!-- <div class="form-group" formArrayName="playerNames">
                     <div class="multi-increment-input" *ngFor="let player of playerNames.controls; let i=index" [formGroupName]="i">
                         <input type="text" class="form-control" formControlName="player" placeholder="Player name" required/>
-                        <!-- <div class="multi-increment-delete" *ngIf="i > 0">
-                            <button class="btn btn-danger">
-                                <span class="oi oi-x"></span>
-                            </button>
-                        </div> -->
+                        
                     </div>
                     <div class="multi-increment-button">
                         <button class="btn btn-secondary" (click)="addAnotherPlayer()">
                             <span class="oi oi-plus"></span></button>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="col-md-4" *ngIf="isPvP()">
                 <app-pgr-pvp-battle-form [currentForm]="form"></app-pgr-pvp-battle-form>
-                <!-- <div class="form-group">
-                    <div class="col">
-                        <input type="text" class="form-control" id="playerName" formControlName="playerName"
-                            placeholder="You" />
-                    </div>
-                    <div class="col versus-mode-container">
-                        <span class="versus-mode">VS</span>
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control" id="versus" formControlName="versus"
-                            placeholder="Versus" />
-                    </div>
-                </div> -->
             </div>
-            <div class="col-md-4" *ngIf="isPvE()">
+            <!-- <div class="col-md-4" *ngIf="isPvE()">
                 <div class="form-group form-inline">
                     <label class="form-label">Team</label>
                     <select class="form-control">
@@ -52,11 +36,11 @@
                         <option *ngFor="let item of teamsList">{{ item }}</option>
                     </select>
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="form-row" *ngIf="isPvE()" style="padding: 0.5rem">
             <!-- Refactor this in a submission-pve component -->
-            <ng-container>
+            <!-- <ng-container>
                 <div class="pve-form-title">
                     <h4>{{ PvESubmissionTitle }}</h4>
                 </div>
@@ -138,7 +122,7 @@
                     <button type="button" class="btn btn-secondary btn-lg-2 btn-block">Reset</button>
                 </div>
                 </div>
-            </ng-container>
+            </ng-container> -->
         </div>
     </form>
 </div>

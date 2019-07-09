@@ -8,6 +8,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedComponentsModule } from '../sharedComponents/sharedComponents.module';
 import { TournamentsService } from './tournaments.service';
 import { PgrPvpBattleFormComponent } from './pgr-pvp-battle-form/pgr-pvp-battle-form.component';
+import { PgrPveBattleFormComponent } from './pgr-pve-battle-form/pgr-pve-battle-form.component';
 
 const routes: Routes = [
   { path: 'available', component: PgrTournamentsAvailableComponent },
@@ -39,7 +40,8 @@ export class TournamentsRoutingModule { }
     PgrTournamentsAvailableComponent,
     PgrTournamentPodComponent,
     PgrTournamentPodFormComponent,
-    PgrPvpBattleFormComponent
+    PgrPvpBattleFormComponent,
+    PgrPveBattleFormComponent
   ],
   imports: [
     CommonModule,

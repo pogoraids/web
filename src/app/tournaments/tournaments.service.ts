@@ -18,6 +18,7 @@ export class TournamentsService {
       tallMode: true,
       order: 'DESC',
       limit: 5,
+      scoringType: 'timeRun',
       headers: [
         { title: 'Player' },
         { title: 'Fast' },
@@ -76,15 +77,15 @@ export class TournamentsService {
       tallMode: true,
       limit: 10,
       members: [
-        {id: 'a1', username: 'vlfph'},
-        {id: 'a2', username: 'NetTools'},
-        {id: 'a3', username: 'IAmTheBlackMetal'},
-        {id: 'a4', username: 'drsp'},
-        {id: 'a5', username: 'PokeTrnrSpark'},
-        {id: 'a6', username: 'ChristiLouLou'},
-        {id: 'a7', username: 'stangill'},
-        {id: 'a8', username: 'yourcalcprof'},
-        {id: 'a9', username: 'enanoxUY'}
+        { id: 'a1', username: 'vlfph' },
+        { id: 'a2', username: 'NetTools' },
+        { id: 'a3', username: 'IAmTheBlackMetal' },
+        { id: 'a4', username: 'drsp' },
+        { id: 'a5', username: 'PokeTrnrSpark' },
+        { id: 'a6', username: 'ChristiLouLou' },
+        { id: 'a7', username: 'stangill' },
+        { id: 'a8', username: 'yourcalcprof' },
+        { id: 'a9', username: 'enanoxUY' }
       ],
       pods: [
         {
@@ -92,15 +93,15 @@ export class TournamentsService {
           name: 'Skarmory',
           mechanic: 'PvP',
           members: [
-            {id: 'a1', username: 'vlfph'},
-            {id: 'a2', username: 'NetTools'},
-            {id: 'a3', username: 'IAmTheBlackMetal'},
-            {id: 'a4', username: 'drsp'},
-            {id: 'a5', username: 'PokeTrnrSpark'},
-            {id: 'a6', username: 'ChristiLouLou'},
-            {id: 'a7', username: 'stangill'},
-            {id: 'a8', username: 'yourcalcprof'},
-            {id: 'a9', username: 'enanoxUY'}
+            { id: 'a1', username: 'vlfph' },
+            { id: 'a2', username: 'NetTools' },
+            { id: 'a3', username: 'IAmTheBlackMetal' },
+            { id: 'a4', username: 'drsp' },
+            { id: 'a5', username: 'PokeTrnrSpark' },
+            { id: 'a6', username: 'ChristiLouLou' },
+            { id: 'a7', username: 'stangill' },
+            { id: 'a8', username: 'yourcalcprof' },
+            { id: 'a9', username: 'enanoxUY' }
           ],
           submissions: [{
             id: 100,
@@ -164,6 +165,26 @@ export class TournamentsService {
       scoringData: {
         matches: 3
       },
+    }, {
+      id: 4,
+      name: 'WQ Scoreboard',
+      onlySolo: true,
+      multiPod: true,
+      tallMode: true,
+      limit: 10,
+      scoringType: 'custom',
+      mechanic: 'PvE',
+      customScoringModel: {
+        title: 'Wow Quotient',
+        fields: [
+          { name: 'attacker', type: 'text', dataList: 'searchAttacker', help: 'Enter attacker\'s species', preload: true },
+          { name: 'fastAttacker', type: 'text', dataList: 'searchFastAttacker', fieldClass: 'col-6', help: 'Your fast move', preload: true },
+          { name: 'cinematicAttacker', type: 'text', dataList: 'searchCinematicAttacker', fieldClass: 'col-6', help: 'Your cinematic move', preload: true },
+          { name: 'simLink', type: 'text', help: 'Minimum viable simulation' },
+          { name: 'remainingHP', type: 'number', help: 'HP after battle' }
+        ]
+      },
+      pods: []
     }]);
   }
 }
