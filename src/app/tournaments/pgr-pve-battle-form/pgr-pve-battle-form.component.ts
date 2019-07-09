@@ -28,7 +28,7 @@ export class PgrPveBattleFormComponent implements OnInit {
   availableCinematicAttacksList = ['Doom Desire', 'Origin Pulse', 'Precipice Blades', 'Zap Cannon'];
   weatherConditions = ['Sunny/Clear', 'Partly Cloudy', 'Cloudy', 'Rainy', 'Snowy', 'Windy', 'Foggy'];
   videoLinkHelp = 'YouTube, Streamable, Vimeo, other';
-  scoringType: 'timeRun';
+  scoringType = 'timeRun';
   customFieldsTexts = {
     attacker: 'Attacker',
     fastAttacker: 'Attacker Fast',
